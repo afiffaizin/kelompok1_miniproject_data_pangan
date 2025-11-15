@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 #Baca file
 file_path = "DATA PANGAN MENTAH.xlsx"
-data = pd.read_excel(file_path, header=1)
+data = pd.read_excel(file_path, header=2)
 
 #Ambil kolom komoditas dan harga
-data = data[["Unnamed: 2", "Unnamed: 5"]]
-data.columns = ["Komoditas", "Harga"]
+data = data[["Komoditas", "Harga"]]
+
 
 #Filter baris yang benar-benar ada harga
 data = data[data["Harga"].astype(str).str.contains("Rp", na=False)]
