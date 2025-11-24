@@ -34,8 +34,11 @@ def formatRupiah(x):
 
 tabel["HargaNum"] = tabel["HargaNum"].apply(formatRupiah)
 
+# ambil 10 teratas
+top10 = tabel.head(10)
+
 print("\n=== Harga Tertinggi Daging Sapi Tahun 2023 per Provinsi ===")
-print(tabel)
+print(top10)
 
 # simpan ke excel
-tabel.to_excel("Perbandingan_harga_max_Daging_Sapi_2023.xlsx", index=False)
+top10.to_excel("Perbandingan_harga_max_Daging_Sapi_2023.xlsx", index=False)
