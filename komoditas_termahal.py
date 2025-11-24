@@ -33,8 +33,7 @@ print("TOP 10 Komoditas Termahal:\n")
 print(hargaTertinggi.head(10)) #Tampilkan 10 teratas
 
 #Simpan ke Excel
-hasil = hargaTertinggi.reset_index().rename(columns={"HargaNum": "Harga Tertinggi"})
-hasil.to_excel("Hasil_Komoditas_Termahal.xlsx", index=False)
+hargaTertinggi.to_excel("Hasil_Komoditas_Termahal.xlsx", index=False)
 
 
 print("\nSelesai! File tersimpan: Hasil_Komoditas_Termahal.xlsx")
