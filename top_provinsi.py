@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+
 
 # baca file excel, header ada di baris ke-3 (index 2)
 file_path = "DATA PANGAN MENTAH.xlsx"
@@ -11,36 +11,35 @@ data = data[["Nama Provinsi", "Komoditas", "Harga"]]
 # filter hanya baris yang punya harga (ada Rp)
 data = data[data["Harga"].astype(str).str.contains("Rp", na=False)]
 
-# fungsi sederhana untuk ubah "Rp12,072" → 12072
+# fungsi untuk ubah "Rp12,072" → 12072
 def parseHarga(x):
     x = str(x).replace("Rp", "").replace(".", "").replace(",", "")
     return float(x)
 
 # kolom harga angka
-data["HargaNum"] = data["Harga"].apply(parseHarga)
+data["Rata Rata Harga"] = data["Harga"].apply(parseHarga)
 
 # hitung rata-rata harga komoditas per provinsi
 rataProvinsi = (
-    data.groupby("Nama Provinsi")["HargaNum"]
+    data.groupby("Nama Provinsi")["Rata Rata Harga"]
     .mean()
-    .sort_values(ascending=False)
+    .reset_index()
+    .sort_values(["Rata Rata Harga"], ascending=False)
 )
 
+# format rupiah
+def formatRupiah(x):
+    return "Rp {:,.2f}".format(x).replace(",", "X").replace(".", ",").replace("X", ".")
+
+rataProvinsi["Rata Rata Harga"] = rataProvinsi["Rata Rata Harga"].apply(formatRupiah)
+
 print("\n=== Rata-Rata Harga Komoditas per Provinsi ===")
-print(rataProvinsi.head(15))
+print(rataProvinsi.head(10))  # tampilkan 10 teratas
 
 # simpan ke excel
 rataProvinsi.to_excel("Rata_Rata_Harga_Provinsi.xlsx")
 
-# ambil top 15 untuk grafik
-top15 = rataProvinsi.head(15)
 
-# grafik
-plt.figure(figsize=(10, 6))
-plt.barh(top15.index[::-1], top15.values[::-1])
-plt.title("Top 15 Provinsi Dengan Rata-Rata Harga Komoditas Tertinggi")
-plt.xlabel("Rata-Rata Harga (Rp)")
-plt.tight_layout()
-plt.show()
+
 
 print("\nSelesai. Hasil tersimpan di: Rata_Rata_Harga_Provinsi.xlsx")
