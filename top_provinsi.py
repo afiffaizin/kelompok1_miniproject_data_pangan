@@ -33,11 +33,14 @@ def formatRupiah(x):
 
 rataProvinsi["Rata Rata Harga"] = rataProvinsi["Rata Rata Harga"].apply(formatRupiah)
 
+# ambil 5 teratas
+top5 = rataProvinsi.head(5)
+
 print("\n=== Rata-Rata Harga Komoditas per Provinsi ===")
 print(rataProvinsi.head(10))  # tampilkan 10 teratas
 
 # simpan ke excel
-rataProvinsi.to_excel("Rata_Rata_Harga_Provinsi.xlsx", index=False)
+top5.to_excel("Rata_Rata_Harga_Provinsi.xlsx", index=False)
 
 
 
