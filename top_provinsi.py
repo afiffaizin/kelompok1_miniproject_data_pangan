@@ -2,8 +2,8 @@ import pandas as pd
 
 
 # baca file excel, header ada di baris ke-3 (index 2)
-file_path = "DATA PANGAN MENTAH.xlsx"
-data = pd.read_excel(file_path, header=2)
+file_path = "data_pangan_bersih.xlsx"
+data = pd.read_excel(file_path)
 
 # ambil kolom provinsi, komoditas, harga
 data = data[["Nama Provinsi", "Komoditas", "Harga"]]
@@ -24,7 +24,7 @@ rataProvinsi = (
     data.groupby("Nama Provinsi")["Rata Rata Harga"]
     .mean()
     .reset_index()
-    .sort_values(["Rata Rata Harga"], ascending=False)
+    .sort_values("Rata Rata Harga", ascending=False)
 )
 
 # format rupiah
@@ -37,7 +37,7 @@ print("\n=== Rata-Rata Harga Komoditas per Provinsi ===")
 print(rataProvinsi.head(10))  # tampilkan 10 teratas
 
 # simpan ke excel
-rataProvinsi.to_excel("Rata_Rata_Harga_Provinsi.xlsx")
+rataProvinsi.to_excel("Rata_Rata_Harga_Provinsi.xlsx", index=False)
 
 
 
