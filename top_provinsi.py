@@ -37,12 +37,12 @@ rataProvinsi["Rata Rata Harga"] = rataProvinsi["Rata Rata Harga"].apply(formatRu
 top5 = rataProvinsi.head(5)
 
 print("\n=== Rata-Rata Harga Komoditas per Provinsi ===")
-print(rataProvinsi.head(10))  # tampilkan 10 teratas
+print(rataProvinsi.head(5))  # tampilkan 5 teratas
 
 # simpan ke excel
-top5.to_excel("Rata_Rata_Harga_Provinsi.xlsx", index=False)
+top5.to_excel("top_provinsi.xlsx", index=False)
 
 
 
 
-print("\nSelesai. Hasil tersimpan di: Rata_Rata_Harga_Provinsi.xlsx")
+print("\nSelesai. Hasil tersimpan di: top_provinsi.xlsx")
