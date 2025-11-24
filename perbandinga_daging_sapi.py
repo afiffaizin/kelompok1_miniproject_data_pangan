@@ -25,7 +25,7 @@ tabel = (
     data.groupby("Nama Provinsi")["HargaNum"]
     .max()
     .reset_index()
-    .sort_values("HargaNum", ascending=False)
+    .sort_values("HargaNum", ascending=True)
 )
 
 # format ke rupiah

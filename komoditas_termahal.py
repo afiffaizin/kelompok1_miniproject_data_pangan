@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+
 
 #Baca file
 file_path = "data_pangan_bersih.xlsx"
@@ -21,7 +21,7 @@ def parseHarga(x):
 data["Harga Tertinggi"] = data["Harga"].apply(parseHarga)
 
 #Cari harga tertinggi per komoditas
-hargaTertinggi = data.groupby("Komoditas")["Harga Tertinggi"].max().reset_index().sort_values("Harga Tertinggi", ascending=False)
+hargaTertinggi = data.groupby("Komoditas")["Harga Tertinggi"].max().reset_index().sort_values("Harga Tertinggi", ascending=True)
 
 #format rupiah
 def formatRupiah(x):
@@ -33,8 +33,8 @@ print("TOP 10 Komoditas Termahal:\n")
 print(hargaTertinggi.head(10)) #Tampilkan 10 teratas
 
 #Simpan ke Excel
-hargaTertinggi.to_excel("Hasil_Komoditas_Termahal.xlsx", index=False)
+hargaTertinggi.to_excel("Komoditas_Termahal.xlsx", index=False)
 
 
-print("\nSelesai! File tersimpan: Hasil_Komoditas_Termahal.xlsx")
+print("\nSelesai! File tersimpan: Komoditas_Termahal.xlsx")
 
