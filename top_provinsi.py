@@ -40,9 +40,9 @@ print("\n=== Rata-Rata Harga Komoditas per Provinsi ===")
 print(rataProvinsi.head(5))  # tampilkan 5 teratas
 
 # simpan ke excel
-top5.to_excel("top_provinsi.xlsx", index=False)
+top5.to_excel("top_provinsifix.xlsx", index=False)
 
 
 
 
-print("\nSelesai. Hasil tersimpan di: top_provinsi.xlsx")
+print("\nSelesai. Hasil tersimpan di: top_provinsifix.xlsx")
