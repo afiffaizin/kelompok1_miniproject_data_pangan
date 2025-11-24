@@ -11,6 +11,8 @@ data = data[["Nama Provinsi", "Komoditas", "Tahun", "Bulan", "Harga"]]
 komo = data["Komoditas"].astype(str).str.lower()
 data = data[komo.str.contains("cabai rawit merah")]
 
+# filter hanya tahun 2024
+data = data[data["Tahun"] == 2024]
 
 # harga harus ada "Rp"
 data = data[data["Harga"].astype(str).str.contains("Rp", na=False)]
