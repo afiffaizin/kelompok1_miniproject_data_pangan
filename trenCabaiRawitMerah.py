@@ -1,15 +1,11 @@
 import pandas as pd
 
 # baca file excel
-filePath = "data_pangan_bersih.xlsx"
-data = pd.read_excel(filePath)
+filePath = "HasilPemisahDataPangan.xlsx"
+data = pd.read_excel(filePath, sheet_name = "Cabai Rawit Merah")
 
 # ambil kolom
 data = data[["Nama Provinsi", "Komoditas", "Tahun", "Bulan", "Harga"]]
-
-# filter cabai rawit merah
-komo = data["Komoditas"].astype(str).str.lower()
-data = data[komo.str.contains("cabai rawit merah")]
 
 # filter hanya tahun 2024
 data = data[data["Tahun"] == 2024]
