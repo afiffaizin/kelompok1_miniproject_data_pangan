@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import seaborn as sns
 
-
 # --- 1. Definisi Nama File ---
 files = {
     'komoditas': 'komoditas_termahal.xlsx',
@@ -36,13 +35,6 @@ df_provinsi['Rata Rata Harga'] = df_provinsi['Rata Rata Harga'].apply(clean_curr
 df_tren['Rata Rata Harga'] = df_tren['Rata Rata Harga'].apply(clean_currency)
 df_daging['HargaNum'] = df_daging['HargaNum'].apply(clean_currency)
 df_beras['Rata Rata Harga'] = df_beras['Rata Rata Harga'].apply(clean_currency)
-
-# sorting khusus untuk tren cabai berdasarkan bulan
-bulan_order = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
-               'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-df_tren['Bulan'] = pd.Categorical(df_tren['Bulan'], categories=bulan_order, ordered=True)
-df_tren_sorted = df_tren.sort_values('Bulan')
-
 
 # --- 4. Plotting ---
 
